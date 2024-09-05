@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
             友情链接: '友情链接: ',
             websiteInfoContent: '在输入框里输入烦心事，然后销毁它吧！<br>网站不会记录任何信息。',
             feedbackContent: '联系邮箱：Nevercheck@126.com<br>支持我们：',
-            settingsContent: '音效：<input type="checkbox" id="sound-toggle"> 开启/关闭<br>语言：<select id="language-setting"> <option value="zh">中文</option> <option value="en">English</option> <option value="ja">日本語</option> <option value="ko">한국어</option> </select>'
+            settingsContent: '音效：<input type="checkbox" id="sound-toggle"> 开启/关闭<br>语言：<select id="language-setting"> <option value="zh">中文</option> <option value="en">English</option> <option value="ja">日本語</option> <option value="ko">한국어</option> </select>',
+            clearAlert: '坏心情已清除~'
         },
         en: {
             siteTitle: 'Bad Mood Recycle Bin',
@@ -53,7 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
             友情链接: '友情链接: ',
             websiteInfoContent: 'Enter your troubles in the input box, then destroy them!<br>The website does not record any information.',
             feedbackContent: 'Contact Email: Nevercheck@126.com<br>Support us:',
-            settingsContent: 'Sound: <input type="checkbox" id="sound-toggle"> On/Off<br>Language: <select id="language-setting"> <option value="zh">中文</option> <option value="en">English</option> <option value="ja">日本語</option> <option value="ko">한국어</option> </select>'
+            settingsContent: 'Sound: <input type="checkbox" id="sound-toggle"> On/Off<br>Language: <select id="language-setting"> <option value="zh">中文</option> <option value="en">English</option> <option value="ja">日本語</option> <option value="ko">한국어</option> </select>',
+            clearAlert: 'Bad mood has been cleared~'
         },
         ja: {
             siteTitle: '悪い気分リサイクルビン',
@@ -64,14 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
             websiteInfo: 'ウェブサイト情報',
             feedback: 'フィードバック',
             settings: '設定',
-            slogan: 'あなたの悪い気分を削除しましょう~',
+            slogan: '悪い気分を削除しましょう~',
             inputPlaceholder: '内容を入力してください',
             clear: 'クリア',
             copyright: 'Copyright © 2024 yk1537',
             友情链接: '友情链接: ',
             websiteInfoContent: '入力ボックスにあなたの悩みを入力し、それを破壊しましょう！<br>ウェブサイトはいかなる情報も記録しません。',
             feedbackContent: '連絡メール: Nevercheck@126.com<br>サポート:',
-            settingsContent: 'サウンド: <input type="checkbox" id="sound-toggle"> オン/オフ<br>言語: <select id="language-setting"> <option value="zh">中文</option> <option value="en">English</option> <option value="ja">日本語</option> <option value="ko">한국어</option> </select>'
+            settingsContent: 'サウンド: <input type="checkbox" id="sound-toggle"> オン/オフ<br>言語: <select id="language-setting"> <option value="zh">中文</option> <option value="en">English</option> <option value="ja">日本語</option> <option value="ko">한국어</option> </select>',
+            clearAlert: '悪い気分は削除されました~'
         },
         ko: {
             siteTitle: '나쁜 기분 재활용통',
@@ -82,14 +85,15 @@ document.addEventListener('DOMContentLoaded', () => {
             websiteInfo: '웹사이트 정보',
             feedback: '피드백',
             settings: '설정',
-            slogan: '당신의 나쁜 기분을 삭제하세요~',
+            slogan: '나쁜 기분을 삭제하세요~',
             inputPlaceholder: '내용을 입력하세요',
             clear: '지우기',
             copyright: 'Copyright © 2024 yk1537',
             友情链接: '友情链接: ',
             websiteInfoContent: '입력 상자에 당신의 걱정을 입력하고, 그것을 파괴하세요!<br>웹사이트는 어떠한 정보도 기록하지 않습니다.',
             feedbackContent: '연락 이메일: Nevercheck@126.com<br>지원:',
-            settingsContent: '사운드: <input type="checkbox" id="sound-toggle"> 켜기/끄기<br>언어: <select id="language-setting"> <option value="zh">中文</option> <option value="en">English</option> <option value="ja">日本語</option> <option value="ko">한국어</option> </select>'
+            settingsContent: '사운드: <input type="checkbox" id="sound-toggle"> 켜기/끄기<br>언어: <select id="language-setting"> <option value="zh">中文</option> <option value="en">English</option> <option value="ja">日本語</option> <option value="ko">한국어</option> </select>',
+            clearAlert: '나쁜 기분이 삭제되었습니다~'
         }
     };
 
@@ -137,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (currentDeleteMode === 'clear') {
                 inputBox.value = '';
-                showAlert('坏心情已清除~');
+                showAlert(translations[currentLanguage].clearAlert);
             } else if (currentDeleteMode === 'char') {
                 deleteCharacters(inputBox);
             }
@@ -298,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mode === 'clear') {
                 clearButton.addEventListener('click', () => {
                     inputBox.value = '';
-                    showAlert('坏心情已清除~');
+                    showAlert(translations[currentLanguage].clearAlert);
                 });
             } else if (mode === 'char') {
                 clearButton.addEventListener('click', () => {
@@ -316,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 inputBox.value = inputBox.value.slice(0, -1);
             } else {
                 clearInterval(interval);
-                showAlert('坏心情已清除~');
+                showAlert(translations[currentLanguage].clearAlert);
             }
         }, 100); // 每0.1秒删除一个字符
     }

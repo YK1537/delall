@@ -246,7 +246,7 @@ footer a:hover {
 /* 页面内容样式 */
 .page-content {
     text-align: center;
-    margin-bottom: 30px; /* 调整“字体大小”和“设置”之间的距离 */
+    margin-bottom: 30px; 
 }
 
 .page-title {
@@ -277,7 +277,7 @@ footer a:hover {
 .settings-section {
     display: flex;
     align-items: center;
-    margin-bottom: 30px; /* 调整两个设置选项之间的距离 */
+    margin-bottom: 30px;
 }
 
 .settings-title {
