@@ -1,0 +1,377 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #003366;
+}
+
+.site-title {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.site-title img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+button, select {
+    margin-left: 10px;
+    padding: 8px 16px;
+    border: none;
+    background-color: white;
+    color: #003366;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 40px;
+    text-align: left;
+}
+
+select {
+    font-weight: bold;
+    width: auto;
+    max-width: 66px;
+}
+
+button img {
+    width: 24px;
+    height: 24px;
+}
+
+button:hover, select:hover {
+    background-color: #f0f0f0;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.slogan-container {
+    margin-top: 60px;
+}
+
+.slogan {
+    font-size: 48px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    margin-top: 0px;
+}
+
+textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    resize: none;
+    overflow: auto;
+    min-height: 40px;
+    font-size: 16px;
+    margin: 0 auto;
+    height: 160px;
+}
+
+textarea::placeholder {
+    font-size: 16px;
+}
+
+textarea:placeholder-shown {
+    min-height: 130px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#clear-button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    background-color: #003366;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#clear-button img {
+    width: 28px;
+    height: 28px;
+}
+
+#clear-button:hover {
+    background-color: #002244;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 10px;
+    background-color: #f8f8f8;
+    margin-top: auto;
+}
+
+.copyright {
+    margin-bottom: 10px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #333;
+}
+
+footer a:hover {
+    color: #007bff;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -160px;
+    width: 160px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.sidebar.open {
+    right: 0;
+}
+
+#close-sidebar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    color: #007bff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+#close-sidebar:hover {
+    background-color: #f0f0f0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 50px;
+}
+
+.sidebar ul li {
+    padding: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.sidebar ul li a:hover {
+    color: #007bff;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    padding: 10px;
+    background-color: white;
+    color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+}
+
+#back-to-top img {
+    width: 24px;
+    height: 24px;
+}
+
+#back-to-top:hover {
+    background-color: #f0f0f0;
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+    .buttons {
+        flex-direction: column;
+    }
+
+    button, select {
+        margin: 5px 0;
+    }
+}
+
+/* 页面内容样式 */
+.page-content {
+    text-align: center;
+    margin-bottom: 30px; /* 调整“字体大小”和“设置”之间的距离 */
+}
+
+.page-title {
+    font-size: 48px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.page-text {
+    font-size: 24px;
+}
+
+/* 添加捐赠图片的样式 */
+.donation-images {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.donation-images img {
+    width: 150px;
+    height: 150px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+/* 设置页面样式 */
+.settings-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px; /* 调整两个设置选项之间的距离 */
+}
+
+.settings-title {
+    font-weight: bold;
+    text-align: left;
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+.font-size-button, .delete-mode-button {
+    font-size: 16px;
+    padding: 15px 30px;
+    margin: 0 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: white;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.font-size-button.small {
+    font-size: 12px;
+}
+
+.font-size-button.medium {
+    font-size: 16px;
+}
+
+.font-size-button.large {
+    font-size: 20px;
+}
+
+.font-size-button.selected, .delete-mode-button.selected {
+    background-color: rgba(0, 51, 102, 0.3);
+}
+
+/* Toast 样式 */
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+.toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+/* 添加提示浮窗的样式 */
+.alert-box {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+    z-index: 1000;
+    display: none;
+}

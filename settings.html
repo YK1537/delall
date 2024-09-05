@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="site-title">
+            <img src="assets/images/icon.png" alt="Icon">
+            <span id="site-title-text">坏心情回收站</span>
+        </div>
+        <div class="buttons">
+            <button id="home-button"><img src="assets/images/home-icon.png" alt="回到主页"></button>
+            <button id="mute-button"><img src="assets/images/mute-icon.png" alt="关闭音效"></button>
+            <select id="language-select">
+                <option value="zh">中文</option>
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+            </select>
+            <button id="collapse-button"><img src="assets/images/collapse-icon.png" alt="折叠按钮"></button>
+        </div>
+    </header>
+    <main>
+        <div class="page-content">
+            <h1 class="page-title" id="settings-title">设置</h1>
+            <div class="settings-section">
+                <span class="settings-title" id="font-size-title">字体大小：</span>
+                <button class="font-size-button small" data-size="small" id="font-size-small">小</button>
+                <button class="font-size-button medium" data-size="medium" id="font-size-medium">中</button>
+                <button class="font-size-button large" data-size="large" id="font-size-large">大</button>
+            </div>
+            <div class="settings-section">
+                <span class="settings-title" id="delete-mode-title">删除模式：</span>
+                <button class="delete-mode-button" data-mode="clear" id="delete-mode-clear">一键删除</button>
+                <button class="delete-mode-button" data-mode="char" id="delete-mode-char">逐个删除</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="copyright" id="copyright">Copyright © 2024 yk1537</div>
+        <div class="友情链接" id="友情链接">友情链接: <a href="https://www.deepseek.com" target="_blank">deepseek.com</a></div>
+    </footer>
+    <div id="sidebar" class="sidebar">
+        <button id="close-sidebar">x</button>
+        <ul>
+            <li><a href="website-info.html" id="website-info-link">网站说明</a></li>
+            <li><a href="feedback.html" id="feedback-link">建议和赞赏</a></li>
+            <li><a href="settings.html" id="settings-link">设置</a></li>
+        </ul>
+    </div>
+    <button id="back-to-top"><img src="assets/images/back-to-top-icon.png" alt="回到顶部"></button>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLanguage = localStorage.getItem('currentLanguage') || 'zh';
+            const translations = {
+                zh: {
+                    siteTitle: '坏心情回收站',
+                    settings: '设置',
+                    fontSize: '字体大小：',
+                    deleteMode: '删除模式：',
+                    small: '小',
+                    medium: '中',
+                    large: '大',
+                    clear: '一键删除',
+                    char: '逐个删除',
+                    copyright: 'Copyright © 2024 yk1537',
+                    友情链接: '友情链接: ',
+                    websiteInfoLink: '网站说明',
+                    feedbackLink: '建议和赞赏',
+                    settingsLink: '设置'
+                },
+                en: {
+                    siteTitle: 'Bad Mood Recycle Bin',
+                    settings: 'Settings',
+                    fontSize: 'Font Size:',
+                    deleteMode: 'Delete Mode:',
+                    small: 'Small',
+                    medium: 'Medium',
+                    large: 'Large',
+                    clear: 'Clear All',
+                    char: 'Delete One by One',
+                    copyright: 'Copyright © 2024 yk1537',
+                    友情链接: '友情链接: ',
+                    websiteInfoLink: 'Website Info',
+                    feedbackLink: 'Feedback',
+                    settingsLink: 'Settings'
+                },
+                ja: {
+                    siteTitle: '悪い気分リサイクルビン',
+                    settings: '設定',
+                    fontSize: '文字サイズ：',
+                    deleteMode: '削除モード：',
+                    small: '小',
+                    medium: '中',
+                    large: '大',
+                    clear: 'すべて削除',
+                    char: '一文字ずつ',
+                    copyright: 'Copyright © 2024 yk1537',
+                    友情链接: '友情链接: ',
+                    websiteInfoLink: 'ウェブサイト情報',
+                    feedbackLink: 'フィードバック',
+                    settingsLink: '設定'
+                },
+                ko: {
+                    siteTitle: '나쁜 기분 재활용통',
+                    settings: '설정',
+                    fontSize: '글꼴 크기:',
+                    deleteMode: '삭제 모드:',
+                    small: '작',
+                    medium: '중',
+                    large: '크',
+                    clear: '모두 삭제',
+                    char: '한 글자씩',
+                    copyright: 'Copyright © 2024 yk1537',
+                    友情链接: '友情链接: ',
+                    websiteInfoLink: '웹사이트 정보',
+                    feedbackLink: '피드백',
+                    settingsLink: '설정'
+                }
+            };
+            const translation = translations[currentLanguage];
+            document.getElementById('site-title-text').textContent = translation.siteTitle;
+            document.getElementById('settings-title').textContent = translation.settings;
+            document.getElementById('font-size-title').textContent = translation.fontSize;
+            document.getElementById('delete-mode-title').textContent = translation.deleteMode;
+            document.getElementById('font-size-small').textContent = translation.small;
+            document.getElementById('font-size-medium').textContent = translation.medium;
+            document.getElementById('font-size-large').textContent = translation.large;
+            document.getElementById('delete-mode-clear').textContent = translation.clear;
+            document.getElementById('delete-mode-char').textContent = translation.char;
+            document.getElementById('copyright').textContent = translation.copyright;
+            document.getElementById('友情链接').innerHTML = translation.友情链接 + '<a href="https://www.deepseek.com" target="_blank">deepseek.com</a>';
+            document.getElementById('website-info-link').textContent = translation.websiteInfoLink;
+            document.getElementById('feedback-link').textContent = translation.feedbackLink;
+            document.getElementById('settings-link').textContent = translation.settingsLink;
+
+            // 监听语言变化事件
+            document.addEventListener('languageChange', () => {
+                const currentLanguage = localStorage.getItem('currentLanguage') || 'zh';
+                const translation = translations[currentLanguage];
+                document.getElementById('site-title-text').textContent = translation.siteTitle;
+                document.getElementById('settings-title').textContent = translation.settings;
+                document.getElementById('font-size-title').textContent = translation.fontSize;
+                document.getElementById('delete-mode-title').textContent = translation.deleteMode;
+                document.getElementById('font-size-small').textContent = translation.small;
+                document.getElementById('font-size-medium').textContent = translation.medium;
+                document.getElementById('font-size-large').textContent = translation.large;
+                document.getElementById('delete-mode-clear').textContent = translation.clear;
+                document.getElementById('delete-mode-char').textContent = translation.char;
+                document.getElementById('copyright').textContent = translation.copyright;
+                document.getElementById('友情链接').innerHTML = translation.友情链接 + '<a href="https://www.deepseek.com" target="_blank">deepseek.com</a>';
+                document.getElementById('website-info-link').textContent = translation.websiteInfoLink;
+                document.getElementById('feedback-link').textContent = translation.feedbackLink;
+                document.getElementById('settings-link').textContent = translation.settingsLink;
+            });
+        });
+    </script>
+</body>
+</html>
