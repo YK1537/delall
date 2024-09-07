@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>设置</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2B04XSJ08"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-J2B04XSJ08');
+    </script>
 </head>
 <body>
     <header>
@@ -41,19 +49,22 @@
         </div>
     </main>
     <footer>
-        <div class="copyright" id="copyright">Copyright © 2024 yk1537</div>
         <div class="友情链接" id="友情链接">友情链接: <a href="https://www.deepseek.com" target="_blank">deepseek.com</a></div>
+        <div class="copyright" id="copyright">Copyright © 2024 YK1537</div>
     </footer>
     <div id="sidebar" class="sidebar">
         <button id="close-sidebar">x</button>
         <ul>
             <li><a href="website-info.html" id="website-info-link">网站说明</a></li>
+            <li><a href="bubble-wrap.html">气泡纸</a></li>
             <li><a href="feedback.html" id="feedback-link">建议和赞赏</a></li>
             <li><a href="settings.html" id="settings-link">设置</a></li>
         </ul>
     </div>
     <button id="back-to-top"><img src="assets/images/back-to-top-icon.png" alt="回到顶部"></button>
-    <script src="script.js"></script>
+    <script src="main.js"></script>
+    <script src="sound-control.js"></script>
+    <script src="language-control.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const currentLanguage = localStorage.getItem('currentLanguage') || 'zh';

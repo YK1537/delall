@@ -9,13 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTop = document.getElementById('back-to-top');
     const homeButton = document.getElementById('home-button');
 
-    let isMuted = localStorage.getItem('isMuted') === 'true' || false;
+    // 初始化静音状态，默认不静音
+    let isMuted = localStorage.getItem('isMuted') === 'true';
+    // 初始化语言设置
     let currentLanguage = localStorage.getItem('currentLanguage') || 'zh';
+    // 初始化字体大小
     let currentFontSize = localStorage.getItem('currentFontSize') || 'medium';
+    // 初始化删除模式
     let currentDeleteMode = localStorage.getItem('currentDeleteMode') || 'clear';
 
     const keyboardSound = new Audio('assets/sounds/keyboard-sound.mp3');
     const trashSound = new Audio('assets/sounds/trash-sound.mp3');
+    const bubbleSound = new Audio('assets/sounds/bubble-sound.mp3');
 
     // 定义 translations 变量
     const translations = {
@@ -26,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             collapse: '折叠按钮',
             backToTop: '回到顶部',
             websiteInfo: '网站说明',
+            bubbleWrap: '气泡纸',
             feedback: '建议和赞赏',
             settings: '设置',
             slogan: '删除你的坏心情吧~',
@@ -45,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             collapse: 'Collapse',
             backToTop: 'Back to Top',
             websiteInfo: 'Website Info',
+            bubbleWrap: 'Bubble Wrap',
             feedback: 'Feedback',
             settings: 'Settings',
             slogan: 'Delete your bad mood~',
@@ -64,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             collapse: '折りたたむ',
             backToTop: 'トップに戻る',
             websiteInfo: 'ウェブサイト情報',
+            bubbleWrap: 'プチプチ',
             feedback: 'フィードバック',
             settings: '設定',
             slogan: '悪い気分を削除しましょう~',
@@ -83,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             collapse: '접기',
             backToTop: '맨 위로',
             websiteInfo: '웹사이트 정보',
+            bubbleWrap: '뽁뽁이',
             feedback: '피드백',
             settings: '설정',
             slogan: '나쁜 기분을 삭제하세요~',
@@ -104,6 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 初始化字体大小和删除模式
     applyFontSize(currentFontSize);
     applyDeleteMode(currentDeleteMode);
+
+    // 更新静音按钮状态
+    muteButton.querySelector('img').src = isMuted ? 'assets/images/mute-icon.png' : 'assets/images/unmute-icon.png';
 
     muteButton.addEventListener('click', () => {
         isMuted = !isMuted;
@@ -216,19 +228,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.友情链接').innerHTML = translation.友情链接 + '<a href="https://www.deepseek.com" target="_blank">deepseek.com</a>';
 
         const sidebarLinks = document.querySelectorAll('.sidebar ul li a');
-        if (sidebarLinks.length >= 3) {
+        if (sidebarLinks.length >= 4) {
             sidebarLinks[0].textContent = translation.websiteInfo;
-            sidebarLinks[1].textContent = translation.feedback;
-            sidebarLinks[2].textContent = translation.settings;
+            sidebarLinks[1].textContent = translation.bubbleWrap;
+            sidebarLinks[2].textContent = translation.feedback;
+            sidebarLinks[3].textContent = translation.settings;
         } else {
             console.error('Not enough sidebar links found');
         }
 
         const pageTitles = document.querySelectorAll('.page-title');
-        if (pageTitles.length >= 3) {
+        if (pageTitles.length >= 4) {
             pageTitles[0].textContent = translation.websiteInfo;
-            pageTitles[1].textContent = translation.feedback;
-            pageTitles[2].textContent = translation.settings;
+            pageTitles[1].textContent = translation.bubbleWrap;
+            pageTitles[2].textContent = translation.feedback;
+            pageTitles[3].textContent = translation.settings;
         } else {
             console.error('Not enough page titles found');
         }
@@ -337,4 +351,22 @@ document.addEventListener('DOMContentLoaded', () => {
             alertBox.remove();
         }, 2000);
     }
+
+    // 确保音效在连击多个按钮时继续播放而不是中断
+    bubbleSound.addEventListener('ended', () => {
+        bubbleSound.currentTime = 0.5; // 重置音效时间到0.5秒
+    });
+
+    // 气泡纸音效播放逻辑
+    const bubbleWrapElements = document.querySelectorAll('.bubble-wrap');
+    bubbleWrapElements.forEach(element => {
+        element.addEventListener('click', () => {
+            if (!element.classList.contains('popped')) {
+                if (!isMuted) {
+                    bubbleSound.play();
+                }
+                element.classList.add('popped');
+            }
+        });
+    });
 });

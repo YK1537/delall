@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>气泡纸</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2B04XSJ08"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-J2B04XSJ08');
+    </script>
+</head>
+<body>
+    <header>
+        <div class="site-title">
+            <img src="assets/images/icon.png" alt="Icon">
+            <span>坏心情回收站</span>
+        </div>
+        <div class="buttons">
+            <button id="home-button"><img src="assets/images/home-icon.png" alt="回到主页"></button>
+            <button id="mute-button"><img src="assets/images/mute-icon.png" alt="关闭音效"></button>
+            <select id="language-select">
+                <option value="zh">中文</option>
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+            </select>
+            <button id="collapse-button"><img src="assets/images/collapse-icon.png" alt="折叠按钮"></button>
+        </div>
+    </header>
+    <main>
+        <div class="page-content">
+            <h1 class="page-title">气泡纸</h1>
+            <div id="bubble-wrap" class="bubble-wrap"></div>
+            <button id="reset-button"><img src="assets/images/reset-icon.png" alt="重设"></button>
+        </div>
+    </main>
+    <footer>
+        <div class="友情链接">友情链接: <a href="https://www.deepseek.com" target="_blank">deepseek.com</a></div>
+        <div class="copyright">Copyright © 2024 yk1537</div>
+    </footer>
+    <div id="sidebar" class="sidebar">
+        <button id="close-sidebar">x</button>
+        <ul>
+            <li><a href="website-info.html">网站说明</a></li>
+            <li><a href="bubble-wrap.html">气泡纸</a></li>
+            <li><a href="feedback.html">建议和赞赏</a></li>
+            <li><a href="settings.html">设置</a></li>
+        </ul>
+    </div>
+    <button id="back-to-top"><img src="assets/images/back-to-top-icon.png" alt="回到顶部"></button>
+    <script src="sound-control.js"></script>
+    <script src="language-control.js"></script>
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bubbleWrap = document.getElementById('bubble-wrap');
+            const resetButton = document.getElementById('reset-button');
+            let bubbles = [];
+
+            function createBubbles(rows, cols) {
+                bubbleWrap.innerHTML = '';
+                bubbleWrap.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+                bubbleWrap.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+                for (let i = 0; i < rows * cols; i++) {
+                    const bubble = document.createElement('div');
+                    bubble.className = 'bubble';
+                    bubble.addEventListener('click', () => {
+                        if (!bubble.classList.contains('popped')) {
+                            playSound(bubbleSoundSrc, 0.4); // 只播放后0.4秒
+                            bubble.classList.add('popped');
+                        }
+                    });
+                    bubbles.push(bubble);
+                    bubbleWrap.appendChild(bubble);
+                }
+            }
+
+            function resetBubbles() {
+                bubbles.forEach(bubble => {
+                    bubble.classList.remove('popped');
+                });
+            }
+
+            resetButton.addEventListener('click', () => {
+                resetBubbles();
+                playSound(resetSoundSrc); // 播放重置音效
+            });
+
+            // 根据屏幕方向创建气泡纸
+            function updateBubbleWrap() {
+                const isPortrait = window.innerWidth < window.innerHeight;
+                if (isPortrait) {
+                    createBubbles(8, 5);
+                } else {
+                    createBubbles(5, 8);
+                }
+            }
+
+            window.addEventListener('resize', updateBubbleWrap);
+            updateBubbleWrap();
+
+            resetButton.style.margin = '0 auto';
+        });
+    </script>
+</body>
+</html>
